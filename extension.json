@@ -1,0 +1,201 @@
+{
+	"name": "PageIssues",
+	"author": [
+		"Łukasz Kucharczyk"
+	],
+	"license-name": "GPL-3.0-or-later",
+	"version": "1.0",
+	"type": "other",
+	"requires": {
+		"MediaWiki": ">= 1.33.0"
+	},
+	"AutoloadNamespaces": {
+		"MediaWiki\\Extension\\PageIssues\\": "src/",
+		"MediaWiki\\Extension\\PageIssues\\Actions\\": "src/actions/",
+		"MediaWiki\\Extension\\PageIssues\\Api\\": "src/api/",
+		"MediaWiki\\Extension\\PageIssues\\Models\\": "src/models/",
+		"MediaWiki\\Extension\\PageIssues\\Specials\\": "src/specials/"
+	},
+	"Hooks": {
+		"BeforePageDisplay": "MediaWiki\\Extension\\PageIssues\\Hooks::onBeforePageDisplay",
+		"LoadExtensionSchemaUpdates": "MediaWiki\\Extension\\PageIssues\\Hooks::onLoadExtensionSchemaUpdates",
+		"ArticleDelete": "MediaWiki\\Extension\\PageIssues\\Hooks::onArticleDelete",
+		"SkinTemplateNavigation::Universal": "MediaWiki\\Extension\\PageIssues\\Hooks::onSkinTemplateNavigationUniversal"
+	},
+	"MessagesDirs": {
+		"PageIssues": [ "i18n" ]
+	},
+	"Actions": {
+		"issues": "MediaWiki\\Extension\\PageIssues\\Actions\\ActionIssues",
+		"report": "MediaWiki\\Extension\\PageIssues\\Actions\\ActionReport"
+	},
+	"APIModules": {
+		"pageissues": "MediaWiki\\Extension\\PageIssues\\Api\\ApiPageIssues"
+	},
+	"APIPropModules": {
+		"issues": "MediaWiki\\Extension\\PageIssues\\Api\\ApiPropIssues",
+		"upvotes": "MediaWiki\\Extension\\PageIssues\\Api\\ApiPropUpvotes"
+	},
+	"SpecialPages": {
+		"MostUpvoted": "MediaWiki\\Extension\\PageIssues\\Specials\\SpecialMostUpvoted",
+		"PageIssues": "MediaWiki\\Extension\\PageIssues\\Specials\\SpecialPageIssues"
+	},
+	"AvailableRights": [
+		"pageissues-report",
+		"pageissues-upvote",
+		"pageissues-resolve"
+	],
+	"GroupPermissions": {
+		"*": {
+			"pageissues-upvote": true,
+			"pageissues-report": true
+		},
+		"sysop": {
+			"pageissues-resolve": true
+		}
+	},
+	"RateLimits": {
+		"report": {
+			"ip": [ 1, 60 ]
+		},
+		"upvote": {
+			"ip": [ 10, 60 ]
+		}
+	},
+	"ResourceModules": {
+		"ext.pageissues": {
+			"scripts": [
+				"modules/ext.pageissues/ext.pageissues.js"
+			],
+			"styles": [
+				"modules/ext.pageissues/ext.pageissues.less"
+			],
+			"messages": [
+				"pageissues-upvote-success",
+				"pageissues-upvote-removed"
+			],
+			"dependencies": [
+				"jquery",
+				"oojs",
+				"oojs-ui-core",
+				"oojs-ui.styles.icons-editing-core",
+				"ext.pageissues.reportdialog"
+			]
+		},
+		"ext.pageissues.specialpageissues": {
+			"scripts": [
+				"modules/ext.pageissues.specialpageissues/ext.pageissues.specialpageissues.js"
+			],
+			"styles": [
+				"modules/ext.pageissues.specialpageissues/ext.pageissues.specialpageissues.less"
+			],
+			"dependencies": [
+				"jquery.tablesorter",
+				"ext.pageissues.issueselector"
+			]
+		},
+		"ext.pageissues.actionreport": {
+			"targets": [ "mobile", "desktop" ],
+			"scripts": [
+				"modules/ext.pageissues.actionreport.js"
+			],
+			"dependencies": [
+				"jquery.makeCollapsible"
+			]
+		},
+		"ext.pageissues.issueselector": {
+			"scripts": [
+				"modules/ext.pageissues.issueselector.js"
+			],
+			"messages": [
+				"pageissues-issuegroup-investigationandreferences",
+				"pageissues-issue-hasconflictinginformation",
+				"pageissues-issue-hasincompletecitations",
+				"pageissues-issue-hasoutdatedinformation",
+				"pageissues-issue-needcitations",
+				"pageissues-issue-needsfactchecking",
+				"pageissues-issue-needssources",
+				"pageissues-issue-needssourcedreferences",
+				"pageissues-issuegroup-qualityandcleanup",
+				"pageissues-issue-hasbadlinks",
+				"pageissues-issue-hasbadtemplates",
+				"pageissues-issue-hasbadimages",
+				"pageissues-issue-hasoutdatedtemplatelabels",
+				"pageissues-issue-needscleanup",
+				"pageissues-issue-shouldberewritten",
+				"pageissues-issuegroup-addmorecontent",
+				"pageissues-issue-hasincompletedata",
+				"pageissues-issue-hasincompletelists",
+				"pageissues-issue-needsintroduction",
+				"pageissues-issue-needsinfobox",
+				"pageissues-issue-needsmedia",
+				"pageissues-issue-needsinformation",
+				"pageissues-issuegroup-organizationandguidelines",
+				"pageissues-issue-containsplagiarism",
+				"pageissues-issue-containsvandalism",
+				"pageissues-issue-containesunreleased",
+				"pageissues-issue-isnotnotable",
+				"pageissues-issue-isnotwithinguidelines",
+				"pageissues-issue-istoolong",
+				"pageissues-issue-istooshort",
+				"pageissues-issue-needsrewritingfromsource",
+				"pageissues-issue-needstranslation",
+				"pageissues-issue-shouldbedeleted",
+				"pageissues-issue-shouldbemerged",
+				"pageissues-issue-shouldberetitled",
+				"pageissues-issue-shouldbesplit"
+			],
+			"dependencies": [
+				"jquery",
+				"oojs",
+				"oojs-ui-core",
+				"oojs-ui-widgets",
+				"oojs-ui.styles.icons-editing-core"
+			]
+		},
+		"ext.pageissues.reportdialog": {
+			"scripts": [
+				"modules/ext.pageissues.reportdialog.js"
+			],
+			"messages": [
+				"report",
+				"pageissues-unknownerror",
+				"pageissues-actionreport-success",
+				"pageissues-reportdialog-title",
+				"pageissues-reportdialog-title-advanced",
+				"pageissues-reportdialog-action-report",
+				"pageissues-reportdialog-action-more",
+				"pageissues-reportdialog-action-less",
+				"pageissues-reportdialog-basic-needsinformation",
+				"pageissues-reportdialog-basic-istooshort",
+				"pageissues-reportdialog-basic-hasoutdatedinformation",
+				"pageissues-reportdialog-basic-needsfactchecking",
+				"pageissues-reportdialog-basic-isnotnotable",
+				"pageissues-reportdialog-basic-containsvandalism",
+				"pageissues-reportdialog-action-report",
+				"pageissues-reportdialog-action-more",
+				"pageissues-reportdialog-action-less",
+				"pageissues-reportdialog-label-issues",
+				"pageissues-reportdialog-label-issues-details",
+				"pageissues-reportdialog-label-note",
+				"pageissues-reportdialog-label-note-details"
+			],
+			"dependencies": [
+				"mediawiki.notification",
+				"jquery",
+				"oojs",
+				"oojs-ui-core",
+				"oojs-ui-widgets",
+				"oojs-ui-windows",
+				"oojs-ui.styles.icons-editing-core",
+				"oojs-ui.styles.icons-interactions",
+				"ext.pageissues.issueselector"
+			]
+		}
+	},
+	"ResourceFileModulePaths": {
+		"localBasePath": "",
+		"remoteExtPath": "PageIssues"
+	},
+	"manifest_version": 2
+}

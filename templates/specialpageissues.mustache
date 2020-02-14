@@ -1,0 +1,34 @@
+{{{toggleold}}}
+
+<table class="wikitable pageissues-list" style="width:100%">
+	<thead>
+		<tr>
+			<th>{{messages/quantity}}</th>
+			<th>{{messages/pagetitle}}</th>
+			<th class="pageissues-issueheader unsortable">{{messages/issues}}</th>
+		</tr>
+	</thead>
+	<tbody>
+		{{#each items}}
+			<tr class="pageissues-issue" data-issue="{{issue}}">
+				<td rowspan="2">{{q}}</td>
+				<th>{{{page_url}}}</th>
+				<th>{{issue_msg}}</th>
+			</tr>
+			<tr class="pageissues-issuedetails" data-issue="{{issue}}">
+				<td colspan="2">
+					{{#if notes}}
+						<ul>
+							{{#each notes}}
+								<li>{{{.}}}</li>
+							{{/each}}
+						</ul>
+					{{/if}}
+					{{#each minorreports}}
+						{{#if .}}<p><i>{{{.}}}</i></p>{{/if}}
+					{{/each}}
+				</td>
+			</tr>
+		{{/each}}
+	</tbody>
+</table>

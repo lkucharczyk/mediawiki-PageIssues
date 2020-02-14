@@ -1,0 +1,45 @@
+@pageissues-buttonwidth: 20px;
+
+#pageissues-sidebuttons {
+    display: flex;
+    flex-flow: column;
+    position: fixed;
+    top: 50%;
+    right: 0;
+	width: @pageissues-buttonwidth;
+	background: #d8d8d8;
+    border-radius: ( @pageissues-buttonwidth / 2 ) 0 0 ( @pageissues-buttonwidth / 2 );
+    padding: @pageissues-buttonwidth / 2;
+
+    > .oo-ui-buttonElement {
+        margin: 0;
+
+        &:not( :last-child ) {
+            margin-bottom: @pageissues-buttonwidth / 4;
+        }
+
+        > a {
+            border: 0;
+            padding-top: @pageissues-buttonwidth;
+            padding-left: @pageissues-buttonwidth;
+
+            &:focus {
+                box-shadow: none;
+            }
+        }
+
+        .oo-ui-iconElement-icon {
+            width: @pageissues-buttonwidth;
+            left: 0;
+        }
+    }
+}
+
+// source: https://github.com/Wikia/design-system/blob/master/dist/svg/wds-icons-upvote-small.svg
+.oo-ui-icon-upvote {
+    background-image: url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 18 18%22><g fill-rule=%22evenodd%22><path d=%22M9 14a1 1 0 0 1-1-1V7.414L6.707 8.707a.999.999 0 1 1-1.414-1.414l3-3A.998.998 0 0 1 8.997 4h.006a.988.988 0 0 1 .704.293l3 3a.999.999 0 1 1-1.414 1.414L10 7.414V13a1 1 0 0 1-1 1M9 2C5.14 2 2 5.14 2 9c0 3.859 3.14 7 7 7s7-3.141 7-7c0-3.86-3.14-7-7-7m0 16c-4.962 0-9-4.037-9-9 0-4.962 4.038-9 9-9s9 4.038 9 9c0 4.963-4.038 9-9 9%22></path></g></svg>');
+
+    &.oo-ui-image-progressive {
+        background-image: url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 18 18%22 fill=%22%2336c%22><g fill-rule=%22evenodd%22><path d=%22M9 14a1 1 0 0 1-1-1V7.414L6.707 8.707a.999.999 0 1 1-1.414-1.414l3-3A.998.998 0 0 1 8.997 4h.006a.988.988 0 0 1 .704.293l3 3a.999.999 0 1 1-1.414 1.414L10 7.414V13a1 1 0 0 1-1 1M9 2C5.14 2 2 5.14 2 9c0 3.859 3.14 7 7 7s7-3.141 7-7c0-3.86-3.14-7-7-7m0 16c-4.962 0-9-4.037-9-9 0-4.962 4.038-9 9-9s9 4.038 9 9c0 4.963-4.038 9-9 9%22></path></g></svg>');
+    }
+}
